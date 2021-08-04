@@ -1,7 +1,5 @@
 class ContactsController < ApplicationController
-
   before_action :require_logged_in_user
-
 
   def index
     @contacts = current_user.contacts
@@ -13,6 +11,7 @@ class ContactsController < ApplicationController
 
   def create
     @contact = current_user.contacts.build(contact_params)
+
     if @contact.save
       flash[:success] = 'Contato criado com sucesso.'
       redirect_to user_contacts_path
@@ -23,6 +22,7 @@ class ContactsController < ApplicationController
 
   def edit
     @contact = current_user.contacts.find_by(id: params[:id])
+
     if @contact.nil?
       flash[:danger] = 'Contato não encontrado.'
       redirect_to user_contacts_path(current_user)
@@ -41,6 +41,7 @@ class ContactsController < ApplicationController
 
   def destroy
     @contact = current_user.contacts.find(params[:id])
+
     if @contact.destroy
       flash[:success] = 'Contato removido com sucesso'
       redirect_to user_contacts_path
