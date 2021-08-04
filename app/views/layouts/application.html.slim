@@ -1,0 +1,19 @@
+doctype html
+html
+  head
+    title
+      | Lista de contatos
+    = csrf_meta_tags
+    = csp_meta_tag
+    = stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload'
+  body
+    = render 'layouts/header'
+    .container
+      - flash.each do |message_type, message|
+        = content_tag 'div', class: "alert alert-#{message_type} alert-dismissible", role: 'alert' do
+          button.close[type="button" data-dismiss="alert" aria-label="Close"]
+            span[aria-hidden="true"]
+              | ×
+          = message
+      = yield
+      = render 'layouts/footer'

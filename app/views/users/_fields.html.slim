@@ -1,0 +1,13 @@
+= render 'layouts/error_messages', object: f.object
+.form-group
+  = f.label :nome
+  = f.text_field :nome, class: 'form-control'
+.form-group
+  = f.label :email
+  = f.email_field :email, class: 'form-control'
+.form-group
+  = f.label :password
+  = f.password_field :password, class: 'form-control'
+.form-group
+  = f.label :password_confirmation
+  = f.password_field :password_confirmation, class: 'form-control'

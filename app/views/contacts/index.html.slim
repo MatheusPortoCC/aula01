@@ -1,0 +1,33 @@
+.row
+  .col-xs-12.text-center
+    h1
+      | Meus Contatos
+  .col-md-8.col-md-offset-2.col-xs-12
+    table.table.table-striped
+      thead
+        tr
+          th
+            | Nome
+          th
+            | Telefone
+          th[colspan="2"]
+            |  Ações 
+            = link_to 'Novo Contato', new_user_contact_path(current_user), class: 'btn btn-success'
+      tbody
+        - if @contacts.empty?
+          tr
+            td.text-center[colspan="4"]
+              h3
+                | Sem contatos cadastrados.
+              = link_to 'click aqui', new_user_contact_path(current_user)
+              |  para cadastrar um novo contato 
+        - @contacts.each do |c|
+          tr
+            td
+              = c.name
+            td
+              = c.phone
+            td
+              = link_to 'Editar', edit_user_contact_path(current_user, c), class: 'btn btn-warning'
+            td
+              = link_to 'Excluir', user_contact_path(current_user, c), method: :delete, class: 'btn btn-danger', data: { confirm: 'Tem certeza que deseja excluir?' }
